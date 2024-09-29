@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "105584966301",
+    "project_id": "bank-system-4p5w12",
+    "storage_bucket": "bank-system-4p5w12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105584966301:android:96505864f16099965d7274",
+        "android_client_info": {
+          "package_name": "com.mycompany.banksystem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDr40QWX9jLIPcPDdKzjSqKAicFiHclzVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
