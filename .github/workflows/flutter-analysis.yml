@@ -27,5 +27,9 @@ jobs:
       run: flutter pub get
     - name: Run Flutter Analyzer
       run: flutter analyze
+      
+    - name: Upload Analysis Results
+      uses: actions/upload-artifact@v3
+    
     - name: Run Tests
       run: flutter test  # Add this step to run your tests
