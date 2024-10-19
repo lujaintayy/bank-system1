@@ -1,4 +1,4 @@
-name: Dart Code Analysis
+name: Flutter Code Analysis
 on:
   push:
     branches:
@@ -12,18 +12,18 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v3
-    - name: Set up Dart environment
-      uses: dart-lang/setup-dart@v1
+    - name: Set up Flutter environment
+      uses: subosito/flutter-action@v2
       with:
-        sdk: stable  # Specify a version if needed, e.g., 2.17.0
-    - name: Cache Dart Packages
+        flutter-version: 'stable'  # You can specify a specific version if needed
+    - name: Cache Flutter Packages
       uses: actions/cache@v2
       with:
         path: ~/.pub-cache
-        key: ${{ runner.os }}-dart-${{ hashFiles('**/pubspec.yaml') }}
+        key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
         restore-keys: |
-          ${{ runner.os }}-dart-
+          ${{ runner.os }}-flutter-
     - name: Install dependencies
-      run: dart pub get
-    - name: Run Dart Analyzer
-      run: dart analyze
+      run: flutter pub get
+    - name: Run Flutter Analyzer
+      run: flutter analyze
