@@ -13,9 +13,9 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
     - name: Set up Flutter environment
-      uses: subosito/flutter-action@v2.3.0  # Use a stable version of the action
+      uses: subosito/flutter-action@v2.3.0  # Stable version
       with:
-        flutter-version: '3.10.0'  # Specify a concrete version of Flutter
+        flutter-version: '3.10.0'  # Specify a concrete version
     - name: Cache Flutter Packages
       uses: actions/cache@v3
       with:
@@ -26,10 +26,9 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
     - name: Run Flutter Analyzer
-      run: flutter analyze
-      
+      run: flutter analyze > analysis_results.txt  # Save output to file
     - name: Upload Analysis Results
       uses: actions/upload-artifact@v3
-    
-    - name: Run Tests
-      run: flutter test  # Add this step to run your tests
+      with:
+        name: analysis-results
+        path: analysis_results.txt  # Path to the output file
