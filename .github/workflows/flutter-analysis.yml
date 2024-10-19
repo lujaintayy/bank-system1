@@ -10,25 +10,27 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v3
-    - name: Set up Flutter environment
-      uses: subosito/flutter-action@v2.3.0  # Stable version
-      with:
-        flutter-version: '3.10.0'  # Specify a concrete version
-    - name: Cache Flutter Packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.pub-cache
-        key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-flutter-
-    - name: Install dependencies
-      run: flutter pub get
-    - name: Run Flutter Analyzer
-      run: flutter analyze > analysis_results.txt  # Save output to file
-    - name: Upload Analysis Results
-      uses: actions/upload-artifact@v3
-      with:
-        name: analysis-results
-        path: analysis_results.txt  # Path to the output file
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Set up Flutter environment
+        uses: subosito/flutter-action@v2.3.0  # Use a stable version of the action
+        with:
+          flutter-version: '3.10.0'  # Specify a concrete version of Flutter
+      - name: Cache Flutter Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Run Flutter Analyzer
+        run: flutter analyze
+      - name: Run Tests
+        run: flutter test --reporter json > test_results.json
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test_results.json
